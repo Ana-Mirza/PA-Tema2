@@ -20,20 +20,20 @@ vector<int> start(5 * NMAX, -1);
 vector<int> fin(5 * NMAX, -1);
 
 void dfs(int node, vector<int>& visited) {
-        visited[node] = 1;
+    visited[node] = 1;
 
-        /* mark start time */
-        start[node] = ++timestamp;
-        timest[timestamp] = node;
+    /* mark start time */
+    start[node] = ++timestamp;
+    timest[timestamp] = node;
 
-        for (auto neigh: adj[node]) {
-            if (visited[neigh] == 0)
-                dfs(neigh, visited);
-        }
-
-        /* mark end time */
-        fin[node] = timestamp;
+    for (auto neigh: adj[node]) {
+        if (visited[neigh] == 0)
+            dfs(neigh, visited);
     }
+
+    /* mark end time */
+    fin[node] = timestamp;
+}
 
 void solve() {
     freopen("magazin.out", "w", stdout);
@@ -71,7 +71,7 @@ int main() {
     }
 
     /* read input questions */
-    for (uint32_t i = 0; i < q; i++) {
+    for (int i = 0; i < q; i++) {
         int x, y;
         cin >> x >> y;
         pair<int, int> p;
@@ -79,6 +79,5 @@ int main() {
     }
 
     solve();
-
     return 0;
 }

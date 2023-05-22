@@ -14,7 +14,6 @@ vector<int> low_link;
 vector<int> in_stack;
 stack<int> st;
 vector<int> nodes;
-vector<int> visited;
 
 int solution;
 
@@ -42,7 +41,7 @@ void tarjan(int node, int &current_start) {
     }
 
     if (low_link[node] == found[node]) {
-        int current = 0;
+        int current;
         nodes.push_back(node);
 
         while (!st.empty() && current != node) {
@@ -54,48 +53,33 @@ void tarjan(int node, int &current_start) {
     }
 }
 
-void dfs(int node, vector<int>& visited) {
-    visited[node] = 1;
-
-    for (auto neigh: adj[node]) {
-        if (visited[neigh] == 0)
-            dfs(neigh, visited);
-    }
-}
-
 void solve() {
     int current_start = 0;
 
-    /* get head nodes of scc in topological order */
+    /* determine number of components disconnected from source node */
     for (int i = 1; i <= n; i++) {
         if (found[i] == -1) {
             tarjan(i, current_start);
         }
     }
 
-    /* do dfs from source node */
-    dfs(s, visited);
-
     int n = nodes.size();
-    for (int i = n - 1; i >= 0; i--) {
-        int node = nodes[i];
-        if (node != s && visited[node] == 0) {
-            solution++;
-            dfs(node, visited);
-        }
-    }
+    // for (int i = n - 1; i >= 0; i--) {
+    //     cout << nodes[i] << " ";
+    // }
+    // cout << "\n";
+    // cout << n << " sizeof: " << nodes.size() << "\n";
+    for (int i = 0; i < n; i++)
+        cout << nodes[i] << " ";
+    cout << "\n";
 }
 
 int main() {
-    freopen("ferate.in", "r", stdin);
-	freopen("ferate.out", "w", stdout);
-
     cin >> n >> m >> s;
 
     in_stack = vector<int>(n + 1, 0);
     found = vector<int>(n + 1, -1);
     low_link = vector<int>(n + 1, 0);
-    visited = vector<int>(n + 1, 0);
 
     for (int i = 1; i <= m; i++) {
         int node, neigh;
@@ -104,6 +88,7 @@ int main() {
     }
 
     solve();
+
     cout << solution << "\n";
 
     return 0;
