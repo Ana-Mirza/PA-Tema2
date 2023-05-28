@@ -90,6 +90,7 @@ int main() {
     freopen("ferate.in", "r", stdin);
 	freopen("ferate.out", "w", stdout);
 
+    ios_base::sync_with_stdio(false);
     cin >> n >> m >> s;
 
     in_stack = vector<int>(n + 1, 0);

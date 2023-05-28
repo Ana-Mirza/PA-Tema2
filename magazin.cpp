@@ -37,6 +37,7 @@ void dfs(int node, vector<int>& visited) {
 
 void solve() {
     freopen("magazin.out", "w", stdout);
+    ios_base::sync_with_stdio(false);
     vector<int> visited(n + 1, 0);
 
     /* initalization */
@@ -61,6 +62,7 @@ void solve() {
 
 int main() {
     freopen("magazin.in", "r", stdin);
+    ios_base::sync_with_stdio(false);
     cin >> n >> q;
 
     /* read input edges */
