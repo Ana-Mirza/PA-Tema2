@@ -26,7 +26,7 @@ void dfs(int node, vector<int>& visited) {
     start[node] = ++timestamp;
     timest[timestamp] = node;
 
-    for (auto neigh: adj[node]) {
+    for (auto neigh : adj[node]) {
         if (visited[neigh] == 0)
             dfs(neigh, visited);
     }
@@ -45,7 +45,7 @@ void solve() {
     /* make a dfs and save start time and end time for each node */
     dfs(1, visited);
 
-    for (pair<int, int> question: pairs) {
+    for (pair<int, int> question : pairs) {
         int startNode = question.first;
         int dist = question.second;
         int finalNode = timest[start[startNode] + dist];
