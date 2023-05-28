@@ -29,10 +29,10 @@ void tarjan(int node, int &current_start) {
     in_stack[node] = 1;
     st.push(node);
 
-    for (int neigh: adj[node]) {
+    for (int neigh : adj[node]) {
         if (found[neigh] == -1) {
             tarjan(neigh, current_start);
-        
+
             /* update low_link */
             low_link[node] = min(low_link[node], low_link[neigh]);
         } else {
@@ -57,7 +57,7 @@ void tarjan(int node, int &current_start) {
 void dfs(int node, vector<int>& visited) {
     visited[node] = 1;
 
-    for (auto neigh: adj[node]) {
+    for (auto neigh : adj[node]) {
         if (visited[neigh] == 0)
             dfs(neigh, visited);
     }
