@@ -22,7 +22,7 @@ int solve(int set) {
 
     /* find indegree of nodes */
     for (int i = 1; i <= n; i++) {
-        for (int neigh: adj[i]) {
+        for (int neigh : adj[i]) {
             indegree[neigh]++;
         }
     }
@@ -40,7 +40,7 @@ int solve(int set) {
     lastSet = set;
 
     /* khan with dequeue */
-    while(!deq.empty()) {
+    while (!deq.empty()) {
         int node = (lastSet == 1) ? deq.front() : deq.back();
         (lastSet == 1) ? deq.pop_front() : deq.pop_back();
 
@@ -51,7 +51,7 @@ int solve(int set) {
         }
 
         /* add all neighbors with indegree 0 */
-        for (int neigh: adj[node]) {
+        for (int neigh : adj[node]) {
             indegree[neigh]--;
 
             if (indegree[neigh] == 0) {

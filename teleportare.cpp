@@ -22,23 +22,26 @@ void solve() {
     }
 
     /* apply Dijskra starting from source node = 1 */
-    auto cmp = [](tuple<int, uint64_t, int> left, tuple<int, uint64_t, int> right) { 
+    auto cmp = [](tuple<int, uint64_t, int> left,
+                  tuple<int, uint64_t, int> right) {
         auto [x, y, z] = left;
         auto [a, b, c] = right;
         return y > b; };
-        priority_queue<tuple<int, uint64_t, int>, vector<tuple<int, uint64_t, int>>, decltype(cmp)> pq(cmp);
+        priority_queue<tuple<int, uint64_t, int>,
+                             vector<tuple<int, uint64_t, int>>,
+                             decltype(cmp)> pq(cmp);
 
     int source = 1;
     dist[source][0] = 0;
     pq.push({source, dist[source][0], 0});
 
     /* start relaxation loop */
-    while(!pq.empty()) {
+    while (!pq.empty()) {
         auto [node, distance, mode] = pq.top();
         pq.pop();
 
         /* relax all normal edges */
-        for(pair<int, int> neigh: adj[node]) {
+        for (pair<int, int> neigh : adj[node]) {
             uint64_t seconds = neigh.second;
             int new_mode = (mode + seconds) % mod;
             uint64_t new_dist = distance + seconds;
@@ -48,9 +51,9 @@ void solve() {
                     pq.push({neigh.first, new_dist, new_mode});
             }
         }
-        
+
         /* relax teleportation edges */
-        for(pair<int, int> neigh: teleport[node]) {
+        for (pair<int, int> neigh : teleport[node]) {
             /* check if teleportation can be used */
             int period = neigh.second;
             if (mode % period != 0)
