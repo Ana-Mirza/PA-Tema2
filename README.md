@@ -16,7 +16,7 @@ Complexity: O(|V| + |E|)
 For this problem, I used Tarjan's algorithm to find the heads of the conex
 components of the graph. Since the nodes are sorted inversly topologically,
 I took each head from the tail and made a DFS to mark reacheable nodes,
-after marking all nodes reacheble from the source. For each head that
+after marking all nodes reachable from the source. For each head that
 was found unvisited, an edge is added, therefore adding to the solution.
 
 Complexity: O(|V| + |E|)
